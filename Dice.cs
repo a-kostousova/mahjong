@@ -1,27 +1,27 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mahjong
+namespace Mahjong
 {
     public class Dice
     {
-        public Colors Color;
-        public Pictures Picture;
+        public Colours Colour;
+        public Numbers Number;
 
-        public Dice(Colors color, Pictures picture)
+        public Dice(Colours colour, Numbers number)
         {
-            Color = color;
-            Picture = picture;
+            Colour = colour;
+            Number = number;
         }
 
         public override bool Equals(object obj)
         {
             if (!(obj is Dice)) return false;
             var dice = obj as Dice;
-            if (dice.Color != Color || dice.Picture != Picture) return false;
+            if (dice.Colour != Colour || dice.Number != Number) return false;
             return true;
         }
 
