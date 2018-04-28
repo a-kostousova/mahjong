@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mahjong
 {
-    public enum Colour
+    public enum Colours
     {
         Blue,
         Red,
@@ -14,7 +14,7 @@ namespace Mahjong
         White
     }
 
-    public enum Number
+    public enum Numbers
     {
         Zero,
         One,
