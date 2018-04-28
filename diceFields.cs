@@ -1,25 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mahjong
+namespace Mahjong
 {
-   public enum Colors
-   {
+    public enum Colour
+    {
         Blue,
         Red,
         Green,
         White
-   }
+    }
 
-    public enum Pictures
+    public enum Number
     {
-        one,
-        two,
-        three,
-        four,
-        five
+        Zero,
+        One,
+        Two,
+        Three,
+        Four,
+        Five
     }
 }
