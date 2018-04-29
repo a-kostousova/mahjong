@@ -10,6 +10,7 @@ namespace Mahjong
     {
         public Colours Colour;
         public Pictures Picture;
+        public bool Executable { get; set; }
 
         public Dice() => new Dice();
 
