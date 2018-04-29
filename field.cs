@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mahjong
+namespace Mahjong
 {
-    class field
+    class Field
     {
         private int width { get { return columns.GetLength(0); } }
         private int length { get { return columns.GetLength(1); } }
         private Stack<Dice>[,] columns;
 
-        public field(int width, int length) => 
+        public Field(int width, int length) => 
             columns = new Stack<Dice>[width, length];
 
-        public Tuple<int, int> GenerateCoordinate() => 
+        Tuple<int, int> GenerateCoordinate() => 
             new Tuple<int, int>(new Random().Next(width), new Random().Next(length));
 
         //тут заполняю наше поле рандомными косточками, нужно назвать нормально только
@@ -33,7 +33,5 @@ namespace mahjong
                 columns[coordinate2.Item1, coordinate2.Item2].Push(dice);
             }
         }
-
-
     }
 }
