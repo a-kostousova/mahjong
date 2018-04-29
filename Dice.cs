@@ -1,34 +1,37 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mahjong
+namespace mahjong
 {
     public class Dice
     {
-        public Colours Colour;
-        public Numbers Number;
+        public Colors Color;
+        public Pictures Picture;
 
-        public Dice(Colours colour, Numbers number)
+        public Dice() => new Dice();
+
+        public Dice(Colors color, Pictures picture)
         {
-            Colour = colour;
-            Number = number;
+            Color = color;
+            Picture = picture;
         }
 
         public override bool Equals(object obj)
         {
             if (!(obj is Dice)) return false;
             var dice = obj as Dice;
-            if (dice.Colour != Colour || dice.Number != Number) return false;
+            if (dice.Color != Color || dice.Picture != Picture) return false;
             return true;
         }
 
-        public Dice Generate()
-        {
-
-        }
-
+        //именно для этого нужно поле count
+        //теперь можно добавлять новые поля в каждый из enumов и не пересчитывать их кол-во вручную
+        public Dice Generate() => new Dice(
+            (Colors)new Random().Next((int)Colors.count - 1), 
+            (Pictures)new Random().Next((int)Pictures.count - 1));
+        
     }
 }
