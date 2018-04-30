@@ -61,7 +61,7 @@ namespace Mahjong
 
         public void Delete(Tuple<int, int> coordinate)
         {
-            columns[coordinate.Item1, coordinate.Item2].Pop();
+            this[coordinate].Pop();
             Executable(coordinate, false);
         }
 
