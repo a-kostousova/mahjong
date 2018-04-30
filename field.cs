@@ -42,6 +42,7 @@ namespace Mahjong
                      columns[x, y - 1].Count < columns[x, y].Count ||
                      columns[x, y + 1].Count < columns[x, y].Count)
                      columns[x, y].Peek().Executable = true;
+                else columns[x, y].Peek().Executable = false;
         }
 
         private void Executable(Tuple<int, int> coordinate, bool isNeighbor)
