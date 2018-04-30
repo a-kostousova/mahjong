@@ -36,7 +36,7 @@ namespace Mahjong
         
         void Executable(int x, int y)
         {
-            if (x == 0 || x == width || y == 0 || y == length) columns[x, y].Peek().Executable = true;
+            if (x == 0 || x == Length || y == 0 || y == Width) columns[x, y].Peek().Executable = true;
             else if (columns[x - 1, y].Count < columns[x, y].Count ||
                      columns[x + 1, y].Count < columns[x, y].Count ||
                      columns[x, y - 1].Count < columns[x, y].Count ||
