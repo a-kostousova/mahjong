@@ -64,7 +64,7 @@ namespace Mahjong
             Executable(coordinate, false);
         }
 
-        public void Push(Tuple<int, int> coordinate, Dice value) => this[coordinate].Push(value);
+        public void Push(Tuple<int, int> coordinate, Dice dice) => this[coordinate].Push(dice);
 
         private Stack<Dice> this[Tuple<int, int> coordinate] { get => columns[coordinate.Item1, coordinate.Item2]; }
     }
