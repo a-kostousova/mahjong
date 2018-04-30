@@ -8,18 +8,16 @@ namespace Mahjong
 {
     class Field
     {
-        private int width { get { return columns.GetLength(0); } }
-        private int length { get { return columns.GetLength(1); } }
+        public int Length { get => columns.GetLength(0); }
+        public int Width { get => columns.GetLength(1); }
         private Stack<Dice>[,] columns;
 
-        public Field(int width, int length) => 
-            columns = new Stack<Dice>[width, length];
+        public Field(int length, int width) => columns = new Stack<Dice>[length, width];
 
-        Tuple<int, int> GenerateCoordinate() => 
-            new Tuple<int, int>(new Random().Next(width), new Random().Next(length));
+        private Tuple<int, int> GenerateCoordinate() => new Tuple<int, int>(new Random().Next(Length), new Random().Next(Width));
 
         //тут заполняю наше поле рандомными косточками, нужно назвать нормально только
-        public void fuul(int count)
+        public void Fuul(int count)
         {
             for (var i = 0; i < count; i++)
             {
@@ -54,9 +52,9 @@ namespace Mahjong
             if (!isNeighbor)
             {
                 if (x != 0) Executable(Tuple.Create(x - 1, y), true);
-                if (x != width - 1) Executable(Tuple.Create(x + 1, y), true);
+                if (x != Length - 1) Executable(Tuple.Create(x + 1, y), true);
                 if (y != 0) Executable(Tuple.Create(x, y - 1), true);
-                if (y != length - 1) Executable(Tuple.Create(x, y + 1), true);
+                if (y != Width - 1) Executable(Tuple.Create(x, y + 1), true);
             }
         }
 
