@@ -34,7 +34,7 @@ namespace Mahjong
             }
         }
         
-        void Executable(int x, int y)
+        private void Executable(int x, int y)
         {
             if (x == 0 || x == Length || y == 0 || y == Width) columns[x, y].Peek().Executable = true;
             else if (columns[x - 1, y].Count < columns[x, y].Count ||
@@ -44,7 +44,7 @@ namespace Mahjong
                      columns[x, y].Peek().Executable = true;
         }
 
-        void Executable(Tuple<int, int> coordinate, bool isNeighbor)
+        private void Executable(Tuple<int, int> coordinate, bool isNeighbor)
         {
             var x = coordinate.Item1;
             var y = coordinate.Item2;
