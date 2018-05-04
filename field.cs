@@ -24,13 +24,13 @@ namespace Mahjong
                 var dice = new Dice().Generate();
                 var coordinate = GenerateCoordinate();
                 Push(coordinate, dice);
-                Executable(coordinate, false);
+                Executable(coordinate);
                 var coordinate2 = GenerateCoordinate();
                 //убеждаюсь, что новая координата не совпала с первой
                 while (coordinate == coordinate2)
                     coordinate2 = GenerateCoordinate();
                 Push(coordinate, dice);
-                Executable(coordinate2, false);
+                Executable(coordinate2);
             }
         }
         
@@ -52,7 +52,7 @@ namespace Mahjong
         public void Delete(Tuple<int, int> coordinate)
         {
             this[coordinate].Pop();
-            Executable(coordinate, false);
+            Executable(coordinate);
         }
 
         public void Push(Tuple<int, int> coordinate, Dice dice) => this[coordinate].Push(dice);
