@@ -34,30 +34,20 @@ namespace Mahjong
             }
         }
         
-        private void Executable(int x, int y)
-        {
-            if (x == 0 || x == Length - 1 || y == 0 || y == Width - 1) columns[x, y].Peek().Executable = true;
-            else if (columns[x - 1, y].Count < columns[x, y].Count ||
-                     columns[x + 1, y].Count < columns[x, y].Count ||
-                     columns[x, y - 1].Count < columns[x, y].Count ||
-                     columns[x, y + 1].Count < columns[x, y].Count)
-                     columns[x, y].Peek().Executable = true;
-                else columns[x, y].Peek().Executable = false;
-        }
-
-        private void Executable(Tuple<int, int> coordinate, bool isNeighbor)
+        private void Executable(Tuple<int, int> coordinate)
         {
             var x = coordinate.Item1;
             var y = coordinate.Item2;
-            Executable(x, y);
-            if (!isNeighbor)
+            for (var dx = -1; dx <= 1; dx++)
             {
-                if (x != 0) Executable(Tuple.Create(x - 1, y), true);
-                if (x != Length - 1) Executable(Tuple.Create(x + 1, y), true);
-                if (y != 0) Executable(Tuple.Create(x, y - 1), true);
-                if (y != Width - 1) Executable(Tuple.Create(x, y + 1), true);
+                if (columns[x + dx, y].Count == 0) continue;
+                if (Crainij(x + dx) || LessThanOneAnother(x + dx, y)) columns[x + dx, y].Peek().Executable = true;
+                else columns[x + dx, y].Peek().Executable = false;
             }
         }
+        private bool LessThanOneAnother(int x, int y) => columns[x - 1, y].Count < columns[x, y].Count || columns[x + 1, y].Count < columns[x, y].Count;
+
+        private bool Crainij(int x) => x == 0 || x == Length - 1;
 
         public void Delete(Tuple<int, int> coordinate)
         {
