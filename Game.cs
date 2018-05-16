@@ -27,7 +27,10 @@ namespace Mahjong
                     MoveDicePointer(-1, 0);
                     break;
                 case Keys.Right:
-                    MoveDicePointer(0, 1);
+                    MoveDicePointer(1, 0);
+                    break;
+                 case Keys.Enter:
+                    ChooseDice();
                     break;
             }
         }
@@ -37,6 +40,23 @@ namespace Mahjong
                 SumMod(DicePointer.Item2, dy, Field.Width));
         private int SumMod(int x, int y, int mod) => (x + y + mod) % mod;
 
-        //private void 
+        private void DeleteDices()
+        {
+            Field.Delete(DicePointer);
+            Field.Delete(ChosenDice.Item2);
+            ChosenDice = Tuple.Create(false, ChosenDice.Item2);
+            if (Field.PairCount == 0) Console.WriteLine("Game Over, You Win");
+        }
+        
+        private void ChooseDice()
+        {
+            if (ChosenDice.Item1)
+            {
+                if (ChosenDice.Item2 == DicePointer) ChosenDice = Tuple.Create(false, ChosenDice.Item2);
+                else if (Field[ChosenDice.Item2].Equals(Field[DicePointer])) DeleteDices();
+                    else ChosenDice = Tuple.Create(false, ChosenDice.Item2);
+            }
+            else ChosenDice = Tuple.Create(true, DicePointer);
+        }
     }
 }
