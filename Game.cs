@@ -12,6 +12,12 @@ namespace Mahjong
         private Field Field;
         private Tuple<int, int> DicePointer;
         private Tuple<Dice, Dice> ChosenDices;
+        
+        public Game(int length, int width, int count)
+        {
+            Field = new Field(length, width);
+            Field.Full(count);
+        }
 
         public void PressKey(Keys key)
         {
