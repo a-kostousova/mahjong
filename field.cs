@@ -11,13 +11,14 @@ namespace Mahjong
         public int Length { get => columns.GetLength(0); }
         public int Width { get => columns.GetLength(1); }
         private Stack<Dice>[,] columns;
+        public int PairCount { get; private set; }
 
         public Field(int length, int width) => columns = new Stack<Dice>[length, width];
 
         private Tuple<int, int> GenerateCoordinate() => new Tuple<int, int>(new Random().Next(Length), new Random().Next(Width));
 
         //тут заполняю наше поле рандомными косточками, нужно назвать нормально только
-        public void Fuul(int count)
+        public void Full(int count)
         {
             for (var i = 0; i < count; i++)
             {
@@ -41,11 +42,11 @@ namespace Mahjong
             for (var dx = -1; dx <= 1; dx++)
             {
                 if (columns[x + dx, y].Count == 0) continue;
-                if (Crainij(x + dx) || LessThanOneAnother(x + dx, y)) columns[x + dx, y].Peek().Executable = true;
+                if (Crainij(x + dx) || MoreThanOneAnother(x + dx, y)) columns[x + dx, y].Peek().Executable = true;
                 else columns[x + dx, y].Peek().Executable = false;
             }
         }
-        private bool LessThanOneAnother(int x, int y) => columns[x - 1, y].Count < columns[x, y].Count || columns[x + 1, y].Count < columns[x, y].Count;
+        private bool MoreThanOneAnother(int x, int y) => columns[x - 1, y].Count < columns[x, y].Count || columns[x + 1, y].Count < columns[x, y].Count;
 
         private bool Crainij(int x) => x == 0 || x == Length - 1;
 
@@ -53,10 +54,11 @@ namespace Mahjong
         {
             this[coordinate].Pop();
             Executable(coordinate);
+            PairCount--;
         }
 
         public void Push(Tuple<int, int> coordinate, Dice dice) => this[coordinate].Push(dice);
 
-        private Stack<Dice> this[Tuple<int, int> coordinate] { get => columns[coordinate.Item1, coordinate.Item2]; }
+        public Stack<Dice> this[Tuple<int, int> coordinate] { get => columns[coordinate.Item1, coordinate.Item2]; }
     }
 }
