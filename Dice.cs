@@ -10,7 +10,7 @@ namespace Mahjong
     {
         public Colours Colour;
         public Pictures Picture;
-        public bool Executable { get; set; }
+        public bool Takable { get; set; }
 
         public Dice() => new Dice();
 
@@ -27,7 +27,7 @@ namespace Mahjong
         //именно для этого нужно поле count
         //теперь можно добавлять новые поля в каждый из enumов и не пересчитывать их кол-во вручную
         public Dice Generate() => new Dice(
-            (Colors)new Random().Next((int)Colours.count), 
+            (Colours)new Random().Next((int)Colours.count), 
             (Pictures)new Random().Next((int)Pictures.count));    
     }
 }
