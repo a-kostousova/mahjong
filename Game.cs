@@ -16,7 +16,7 @@ namespace Mahjong
         public Game(int length, int width, int count)
         {
             Field = new Field(length, width);
-            Field.Fill(count);
+            Field.FillField(count);
         }
 
         public void PressKey(Keys key)
