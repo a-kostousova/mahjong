@@ -18,42 +18,42 @@ namespace Mahjong
         private Tuple<int, int> GenerateCoordinate() => new Tuple<int, int>(new Random().Next(Length), new Random().Next(Width));
 
         //тут заполняю наше поле рандомными косточками, нужно назвать нормально только
-        public void Full(int count)
+        public void FillField(int count)
         {
             for (var i = 0; i < count; i++)
             {
                 var dice = new Dice().Generate();
                 var coordinate = GenerateCoordinate();
                 Push(coordinate, dice);
-                Executable(coordinate);
+                ChangeTakableFeature(coordinate);
                 var coordinate2 = GenerateCoordinate();
                 //убеждаюсь, что новая координата не совпала с первой
                 while (coordinate == coordinate2)
                     coordinate2 = GenerateCoordinate();
                 Push(coordinate, dice);
-                Executable(coordinate2);
+                ChangeTakableFeature(coordinate2);
             }
         }
         
-        private void Executable(Tuple<int, int> coordinate)
+        private void ChangeTakableFeature(Tuple<int, int> coordinate)
         {
             var x = coordinate.Item1;
             var y = coordinate.Item2;
             for (var dx = -1; dx <= 1; dx++)
             {
                 if (columns[x + dx, y].Count == 0) continue;
-                if (Crainij(x + dx) || MoreThanOneAnother(x + dx, y)) columns[x + dx, y].Peek().Executable = true;
-                else columns[x + dx, y].Peek().Executable = false;
+                if (Extreme(x + dx) || Higher(x + dx, y)) columns[x + dx, y].Peek().Takable = true;
+                else columns[x + dx, y].Peek().Takable = false;
             }
         }
-        private bool MoreThanOneAnother(int x, int y) => columns[x - 1, y].Count < columns[x, y].Count || columns[x + 1, y].Count < columns[x, y].Count;
+        private bool Higher(int x, int y) => columns[x - 1, y].Count < columns[x, y].Count || columns[x + 1, y].Count < columns[x, y].Count;
 
-        private bool Crainij(int x) => x == 0 || x == Length - 1;
+        private bool Extreme(int x) => x == 0 || x == Length - 1;
 
         public void Delete(Tuple<int, int> coordinate)
         {
             this[coordinate].Pop();
-            Executable(coordinate);
+            ChangeTakableFeature(coordinate);
             PairCount--;
         }
 
