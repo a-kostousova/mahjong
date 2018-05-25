@@ -22,16 +22,14 @@ namespace Mahjong
         {
             for (var i = 0; i < count; i++)
             {
-                var dice = new Dice().Generate();
-                var coordinate = GenerateCoordinate();
+                var dice = Generate.Dice();
+                var coordinate = Generate.Coordinate(Length, Width);
                 Push(coordinate, dice);
-                ChangeTakableFeature(coordinate);
-                var coordinate2 = GenerateCoordinate();
+                var coordinate2 = Generate.Coordinate(Length, Width);
                 //убеждаюсь, что новая координата не совпала с первой
                 while (coordinate == coordinate2)
                     coordinate2 = GenerateCoordinate();
                 Push(coordinate, dice);
-                ChangeTakableFeature(coordinate2);
             }
         }
         
@@ -46,14 +44,18 @@ namespace Mahjong
                 else columns[x + dx, y].Peek().Takable = false;
             }
         }
-        private bool Higher(int x, int y) => columns[x - 1, y].Count < columns[x, y].Count || columns[x + 1, y].Count < columns[x, y].Count;
+        private bool Higher(Tuple<int, int> coordinate)
+        {
+            var x = coordinate.Item1;
+            var y = coordinate.Item2;
+            return columns[x - 1, y].Count < this[coordinate].Count || columns[x + 1, y].Count < this[coordinate].Count;
+        }
 
-        private bool Extreme(int x) => x == 0 || x == Length - 1;
+        private bool Extreme(Tuple<int, int> coordinate) => coordinate.Item1 == 0 || coordinate.Item1 == Length - 1;
 
         public void Delete(Tuple<int, int> coordinate)
         {
             this[coordinate].Pop();
-            ChangeTakableFeature(coordinate);
             PairCount--;
         }
 
