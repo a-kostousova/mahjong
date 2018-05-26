@@ -10,7 +10,6 @@ namespace Mahjong
     {
         public Colours Colour;
         public Pictures Picture;
-        public bool Takable { get; set; }
 
         public Dice() => new Dice();
 
@@ -25,9 +24,6 @@ namespace Mahjong
         public bool EqualsColours(Dice dice) => Colour == dice.Colour;
 
         //именно для этого нужно поле count
-        //теперь можно добавлять новые поля в каждый из enumов и не пересчитывать их кол-во вручную
-        public Dice Generate() => new Dice(
-            (Colours)new Random().Next((int)Colours.count), 
-            (Pictures)new Random().Next((int)Pictures.count));    
+        //теперь можно добавлять новые поля в каждый из enumов и не пересчитывать их кол-во вручную 
     }
 }
