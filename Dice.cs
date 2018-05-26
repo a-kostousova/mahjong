@@ -6,6 +6,22 @@ using System.Threading.Tasks;
 
 namespace Mahjong
 {
+    public enum Colours
+    {
+        Blue,
+        Red,
+        Green,
+        White,
+    }
+
+    public enum Pictures
+    {
+        one,
+        two,
+        three,
+        four,
+        five,
+    }
     public class Dice
     {
         public Colours Colour;
