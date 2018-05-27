@@ -1,0 +1,10 @@
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\bin\Debug\MahjongApp.exe.config
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\bin\Debug\MahjongApp.exe
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\bin\Debug\MahjongApp.pdb
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\obj\Debug\MahjongApp.csprojResolveAssemblyReference.cache
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\obj\Debug\MahjongApp.Properties.Resources.resources
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\obj\Debug\MahjongApp.csproj.GenerateResource.Cache
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\obj\Debug\MahjongApp.csproj.CoreCompileInputs.cache
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\obj\Debug\MahjongApp.exe
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\obj\Debug\MahjongApp.pdb
+C:\Users\анастасия\Desktop\MahjongApp\MahjongApp\obj\Debug\MahjongApp.MahjongForm.resources
